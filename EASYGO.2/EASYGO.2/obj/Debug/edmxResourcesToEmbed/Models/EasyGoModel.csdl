@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Booking">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Car_Id" Type="Int32" Nullable="false" />
+    <Property Name="Start_time" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="End_time" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="Customer_Id" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Car" Relationship="Self.FK__Booking__Car_Id__398D8EEE" FromRole="Booking" ToRole="Car" />
+  </EntityType>
+  <EntityType Name="Car">
+    <Key>
+      <PropertyRef Name="Car_Id" />
+    </Key>
+    <Property Name="Car_Id" Type="Int32" Nullable="false" />
+    <Property Name="Registration_number" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Car_Make" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Register_Time" Type="DateTime" Precision="0" />
+    <Property Name="Car_description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Bookings" Relationship="Self.FK__Booking__Car_Id__398D8EEE" FromRole="Car" ToRole="Booking" />
+  </EntityType>
+  <Association Name="FK__Booking__Car_Id__398D8EEE">
+    <End Role="Car" Type="Self.Car" Multiplicity="1" />
+    <End Role="Booking" Type="Self.Booking" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Car">
+        <PropertyRef Name="Car_Id" />
+      </Principal>
+      <Dependent Role="Booking">
+        <PropertyRef Name="Car_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="Entities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Bookings" EntityType="Self.Booking" />
+    <EntitySet Name="Cars" EntityType="Self.Car" />
+    <AssociationSet Name="FK__Booking__Car_Id__398D8EEE" Association="Self.FK__Booking__Car_Id__398D8EEE">
+      <End Role="Car" EntitySet="Cars" />
+      <End Role="Booking" EntitySet="Bookings" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

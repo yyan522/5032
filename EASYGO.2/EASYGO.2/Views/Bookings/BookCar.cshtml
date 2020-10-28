@@ -1,0 +1,50 @@
+﻿@model IEnumerable<EASYGO._2.Models.Car>
+@{
+    ViewBag.Title = "BookCar";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>BookCar</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Registration_number)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Car_Make)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Register_Time)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Car_description)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Registration_number)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Car_Make)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Register_Time)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Car_description)
+            </td>
+            <td>
+                @*@Html.ActionLink("Edit", "Edit", new { id = item.Car_Id }) |
+                @Html.ActionLink("Details", "Details", new { id = item.Car_Id }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.Car_Id })*@
+                @Html.ActionLink("Book", "Create", new { id=item.Car_Id })
+            </td>
+        </tr>
+    }
+
+</table>

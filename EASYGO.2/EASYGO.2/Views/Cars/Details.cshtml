@@ -1,0 +1,51 @@
+﻿@model EASYGO._2.Models.Car
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Car</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Registration_number)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Registration_number)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Car_Make)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Car_Make)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Register_Time)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Register_Time)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Car_description)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Car_description)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Car_Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Booking">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Car_Id" Type="int" Nullable="false" />
+    <Property Name="Start_time" Type="date" Nullable="false" />
+    <Property Name="End_time" Type="date" Nullable="false" />
+    <Property Name="Customer_Id" Type="nvarchar" MaxLength="128" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Car">
+    <Key>
+      <PropertyRef Name="Car_Id" />
+    </Key>
+    <Property Name="Car_Id" Type="int" Nullable="false" />
+    <Property Name="Registration_number" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="Car_Make" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="Register_Time" Type="date" />
+    <Property Name="Car_description" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <Association Name="FK__Booking__Car_Id__398D8EEE">
+    <End Role="Car" Type="Self.Car" Multiplicity="1" />
+    <End Role="Booking" Type="Self.Booking" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Car">
+        <PropertyRef Name="Car_Id" />
+      </Principal>
+      <Dependent Role="Booking">
+        <PropertyRef Name="Car_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="ModelStoreContainer">
+    <EntitySet Name="Booking" EntityType="Self.Booking" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Car" EntityType="Self.Car" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__Booking__Car_Id__398D8EEE" Association="Self.FK__Booking__Car_Id__398D8EEE">
+      <End Role="Car" EntitySet="Car" />
+      <End Role="Booking" EntitySet="Booking" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
